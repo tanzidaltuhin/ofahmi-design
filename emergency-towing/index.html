@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>OFAHMI Emergency Towing Design</title>
+</head>
+<body>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=AR+One+Sans:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Brand = Elementor kit globals of ofahmitowing.com: Primary #D8A935, Secondary #AFAFAF, Text #FFFFFF, Accent #D8A935;
+   Headings AR One Sans 600, body Inter 400, buttons Inter 500 uppercase, radius 100px.
+   Layout: Elementor-style stacked full-width containers (boxed 1200px inner). Same black + gold system as the live site.
+   Every <section> = one Elementor Container. Comments name the widget to use for each block. */
+:root{
+  --black:#000000; --ink:#FFFFFF; --muted:#AFAFAF; --card:#141414; --card-2:#1c1a16; --line:#3a3221;
+  --gold:#D8A935; --gold-deep:#b98c1f; --gold-soft:rgba(216,169,53,.14); --ok:#4ade80;
+  --display:"AR One Sans",Arial,sans-serif; --body:"Inter",Arial,sans-serif;
+  --radius:18px; --pill:100px; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--black);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0}
+img{max-width:100%;display:block}
+a{color:inherit}
+.boxed{max-width:1200px;margin:0 auto;padding-inline:20px}
+section{padding-block:72px}
+h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance}
+h2{font-size:clamp(28px,4vw,42px);line-height:1.15;color:var(--gold);text-transform:uppercase;letter-spacing:.01em}
+h3{font-size:20px;line-height:1.3}
+.lead{color:var(--muted);max-width:62ch;margin:14px 0 0}
+.center{text-align:center}.center .lead{margin-inline:auto}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font:500 13px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--gold);background:var(--gold-soft);border:1px solid rgba(216,169,53,.35);border-radius:var(--pill);padding:6px 14px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(74,222,128,.18)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:500 15px var(--body);text-transform:uppercase;letter-spacing:.02em;text-decoration:none;border-radius:var(--pill);padding:16px 28px;border:2px solid var(--gold);transition:transform .15s,background .15s}
+.btn-gold{background:var(--gold);color:#FFFFFF}
+.btn-gold:hover{background:var(--gold-deep);border-color:var(--gold-deep)}
+.btn-ghost{color:var(--gold);background:#FFFFFF;border-color:#FFFFFF}
+.btn-ghost:hover{background:#f3ead2;border-color:#f3ead2}
+.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* Global header (unchanged, shown for context) */
+.site-header{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);border-bottom:1px solid #1d1d1d}
+.site-header .boxed{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.site-header img{width:54px;height:54px;border-radius:10px;border:1px solid var(--gold);object-fit:cover}
+.site-header nav{display:flex;gap:26px;font:600 13px var(--body);text-transform:uppercase}
+.site-header .btn{padding:10px 20px;font-size:14px}
+.ctx{font:600 11px var(--body);letter-spacing:.08em;text-transform:uppercase;color:#7c7564}
+
+/* 1. Hero */
+.hero{padding-block:56px 64px;background:radial-gradient(1000px 500px at 85% 20%,rgba(216,169,53,.16),transparent 60%),linear-gradient(180deg,#0b0b0b,#000)}
+.hero .boxed{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:48px;align-items:center}
+.hero h1{font-size:clamp(40px,6vw,66px);line-height:1.04;margin-top:18px}
+.hero h1 span{color:var(--gold)}
+.hero .sub{font-size:19px;color:#e9e4d8;margin:18px 0 0;max-width:46ch}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+.trust{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:28px;padding-top:22px;border-top:1px solid #222}
+.trust div{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
+.trust b{color:#fff;font-size:15px}
+.stars{color:var(--gold);letter-spacing:1px}
+.hero-photo{position:relative}
+.hero-photo .main{border-radius:24px;border:3px solid var(--gold);aspect-ratio:4/3.3;object-fit:cover;width:100%}
+.hero-photo .badge{position:absolute;left:-18px;bottom:28px;background:#fff;color:#111;border-radius:16px;padding:12px 16px;display:flex;gap:12px;align-items:center;box-shadow:0 14px 40px rgba(0,0,0,.45);max-width:270px}
+.hero-photo .badge img{width:48px;height:48px;border-radius:10px;object-fit:cover}
+.hero-photo .badge b{display:block;font:700 15px var(--display)}
+.hero-photo .badge span{font-size:13px;color:#555}
+.hero-photo .tag{position:absolute;top:18px;right:18px;background:rgba(0,0,0,.75);border:1px solid var(--gold);color:var(--gold);font:700 12px var(--body);letter-spacing:.06em;text-transform:uppercase;border-radius:var(--pill);padding:7px 12px}
+
+/* 2. Reviews strip (live site: keep the Trustindex widget here) */
+.reviews{padding-block:0 56px}
+.rev-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.rev{background:#f4f2ee;color:#1d1b16;border-radius:14px;padding:18px 20px}
+.rev .stars{color:#e0a400}
+.rev p{margin:8px 0 10px;font-size:15px}
+.rev small{color:#6b665a;font-weight:600}
+.rev-note{display:flex;justify-content:center;gap:8px;margin-top:14px;font-size:13px;color:var(--muted)}
+
+/* 3. Steps */
+.steps{background:#0b0b0b;border-block:1px solid #1a1a1a}
+.step-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:40px;counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;position:relative}
+.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--gold);color:#FFFFFF;font:700 20px var(--display);margin-bottom:16px}
+.step p{color:var(--muted);margin:8px 0 0}
+
+/* 4. Situations */
+.sit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:40px}
+.sit{background:var(--card-2);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:10px}
+.sit .ic{width:52px;height:52px;border-radius:14px;background:var(--gold-soft);display:grid;place-items:center;color:var(--gold)}
+.sit .ic svg{width:28px;height:28px}
+.sit h3{color:var(--gold)}
+.sit p{color:var(--muted);margin:0;font-size:15px}
+.sit a{margin-top:auto;font:700 13px var(--body);text-transform:uppercase;letter-spacing:.05em;color:var(--gold);text-decoration:none}
+
+/* 5. Flatbed split */
+.split .boxed{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
+.collage{display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:1fr 1fr;gap:12px;aspect-ratio:1/0.82}
+.collage img{width:100%;height:100%;object-fit:cover;border-radius:16px}
+.collage img:first-child{grid-row:1/3;border:3px solid var(--gold)}
+.checks{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:12px}
+.checks li{display:flex;gap:12px;align-items:flex-start}
+.checks svg{width:22px;height:22px;color:var(--gold);flex:none;margin-top:2px}
+
+/* 6. Why us */
+.why{background:#0b0b0b;border-block:1px solid #1a1a1a}
+.why-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:40px}
+.why-card{border-top:3px solid var(--gold);background:var(--card);border-radius:0 0 var(--radius) var(--radius);padding:22px}
+.why-card b{display:block;font:700 30px var(--display);color:var(--gold)}
+.why-card h3{font-size:17px;margin-top:6px}
+.why-card p{color:var(--muted);font-size:14px;margin:6px 0 0}
+.pay{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:28px}
+.pay span{border:1px solid var(--line);border-radius:var(--pill);padding:7px 14px;font-size:14px;color:var(--muted)}
+
+/* 7. Gallery */
+.gal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:36px}
+.gal figure{margin:0;position:relative;overflow:hidden;border-radius:14px;aspect-ratio:4/3}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.gal figure:hover img{transform:scale(1.04)}
+.gal figcaption{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.72);font-size:12px;border-radius:var(--pill);padding:4px 10px}
+
+/* 8. Areas */
+.areas{background:linear-gradient(180deg,rgba(0,0,0,.82),rgba(0,0,0,.92)),url("img/12-ofahmi-towing-flatbed-truck-parked.webp") center/cover}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:30px}
+.chips a{border:1px solid var(--gold);color:var(--gold);border-radius:var(--pill);padding:9px 18px;font:500 13px var(--body);text-transform:uppercase;text-decoration:none;background:rgba(216,169,53,.13)}
+.chips a.base{background:var(--gold);color:#FFFFFF}
+.area-note{margin-top:22px;color:var(--muted);font-size:15px}
+
+/* 9. FAQ */
+.faq-list{max-width:860px;margin:36px auto 0;display:grid;gap:12px}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 20px}
+summary{cursor:pointer;list-style:none;font:600 16px var(--body);color:var(--gold);padding:16px 30px 16px 0;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:0;top:12px;font-size:24px}
+details[open] summary::after{content:"\2212"}
+details p{color:var(--muted);margin:0 0 18px}
+
+/* 10. Final CTA */
+.final{background:linear-gradient(90deg,rgba(0,0,0,.92) 35%,rgba(0,0,0,.45)),url("img/04-flatbed-towing-suv-full-truck.webp") center/cover}
+.final h2{color:#fff}
+.final .ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
+
+/* Footer (global, unchanged) */
+.site-footer{background:var(--gold);color:#111;padding-block:26px;text-align:center;font:600 14px var(--body)}
+
+/* 11. Sticky call bar (upgrade) */
+.call-bar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(10,10,10,.96);border-top:1px solid var(--line);box-shadow:0 -10px 30px rgba(0,0,0,.6)}
+.call-bar .btn{flex:1;padding:12px 14px;font-size:15px;flex-direction:column;gap:0;line-height:1.15}
+.call-bar .btn small{font:500 11px var(--body);opacity:.85}
+.call-bar .btn-call{flex:1.7;flex-direction:row;gap:10px}
+.call-bar .btn-call span{display:flex;flex-direction:column;align-items:flex-start}
+.call-pill{position:fixed;right:24px;bottom:24px;z-index:50;display:flex;align-items:center;gap:12px;background:var(--gold);color:#FFFFFF;text-decoration:none;border-radius:var(--pill);padding:10px 22px 10px 10px;box-shadow:0 12px 34px rgba(0,0,0,.55);transform:translateY(140%);opacity:0;transition:transform .3s,opacity .3s}
+.call-pill.show{transform:none;opacity:1}
+.call-pill .ring{width:46px;height:46px;border-radius:50%;background:#111;color:var(--gold);display:grid;place-items:center;position:relative}
+.call-pill .ring svg{width:22px;height:22px}
+.call-pill .ring::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid #111;animation:pulse 2s infinite}
+.call-pill b{display:block;font:700 17px var(--display)}
+.call-pill small{font:600 12px var(--body)}
+@keyframes pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.35);opacity:0}}
+@media (prefers-reduced-motion:reduce){.call-pill,.gal img{transition:none}.call-pill .ring::after{animation:none}}
+
+/* v2 additions: live-page stats, card bullet lists, stat cards, why layout */
+.stats{display:flex;flex-wrap:wrap;margin-top:26px}
+.stats div{padding:0 26px;border-left:1px solid var(--gold)}
+.stats div:first-child{padding-left:0;border-left:0}
+.stats b{display:block;font:600 32px var(--display);color:var(--gold);line-height:1.1}
+.stats span{font-size:14px;color:#e9e4d8}
+.sit ul{list-style:none;padding:0;margin:4px 0 6px;display:grid;gap:6px;font-size:14px}
+.sit li::before{content:"›";color:var(--gold);font-weight:700;margin-right:8px}
+.collage-wrap{position:relative}
+.statcard{position:absolute;background:#fff;color:#111;border-radius:16px;padding:14px 18px;box-shadow:0 14px 34px rgba(0,0,0,.5);max-width:200px}
+.statcard b{display:block;font:600 30px var(--display);color:var(--gold);line-height:1}
+.statcard span{font:600 13px var(--body)}
+.statcard.s1{left:-14px;top:-18px}.statcard.s2{right:-14px;bottom:-18px}.statcard.s3{left:-18px;bottom:24px}
+.why-wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:44px;align-items:center}
+.why-list{display:grid;gap:14px;margin-top:28px}
+.why-item{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-right:3px solid var(--gold);border-radius:var(--radius);padding:20px}
+.why-item .ic{width:52px;height:52px;flex:none;border-radius:50%;background:var(--gold-soft);display:grid;place-items:center;color:var(--gold)}
+.why-item .ic svg{width:26px;height:26px}
+.why-item h3{color:var(--gold);font-size:18px}
+.why-item p{color:var(--muted);margin:6px 0 0;font-size:15px}
+.why-photo{position:relative}
+.why-photo img{border-radius:24px;aspect-ratio:3/3.6;object-fit:cover;width:100%;border:3px solid var(--gold)}
+@media (max-width:1024px){.why-wrap{grid-template-columns:1fr}.statcard.s1{left:8px}.statcard.s2{right:8px}.statcard.s3{left:8px}}
+@media (max-width:767px){.stats div{padding:0 16px}.stats b{font-size:26px}}
+
+/* Responsive (Elementor tablet 1024 / mobile 767) */
+@media (max-width:1024px){
+  .hero .boxed,.split .boxed{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gal{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sit-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .site-header nav{display:none}
+}
+@media (max-width:767px){
+  section{padding-block:52px}
+  .hero{padding-top:28px}
+  .hero-photo .badge{left:10px;bottom:10px}
+  .rev-grid,.step-grid,.sit-grid{grid-template-columns:1fr}
+  .gal{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .call-pill{display:none}
+  .call-bar{display:flex}
+  body{padding-bottom:84px}
+  .site-header .btn{padding:8px 14px;font-size:13px}
+}
+</style>
+
+<!-- GLOBAL HEADER: existing Theme Builder header, no change -->
+<header class="site-header"><div class="boxed">
+  <img src="img/logo.jpg" alt="Ofahmi Towing logo">
+  <nav aria-label="Main"><span>Home</span><span>About Us</span><span>Services</span><span>Reviews</span><span>Contact</span></nav>
+  <a class="btn btn-gold" href="tel:+14709856967"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>(470) 985-6967</a>
+</div></header>
+
+<main>
+<!-- 1. HERO (copy kept from the live landing page). Container: boxed 1200, 2 columns (55/45), stack on tablet.
+     Left: Heading (H1) + Heading (H2 style, subline) + Counter row (3 stats) + 2 Buttons. Right: Image + absolute badge. -->
+<section class="hero" id="top"><div class="boxed">
+  <div>
+    <span class="eyebrow"><span class="dot"></span>Dispatch open now · 24/7</span>
+    <h1>Georgia's <span>24/7 Emergency Towing</span></h1>
+    <p class="sub">Stuck on the road? A tow truck at your location in 15-45 minutes.</p>
+    <div class="stats">
+      <div><b>15-45</b><span>Min Response</span></div>
+      <div><b>24/7</b><span>Availability</span></div>
+      <div><b>5.0</b><span>Star Rated</span></div>
+    </div>
+    <div class="ctas">
+      <a class="btn btn-gold" href="tel:+14709856967"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Call (470) 985-6967</a>
+      <a class="btn btn-ghost" href="/services/">View All Services</a>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <img class="main" src="img/04-flatbed-towing-suv-full-truck.webp" alt="Dark blue SUV loaded on an OFAHMI Towing flatbed truck">
+    <span class="tag">Real job · our truck</span>
+    <div class="badge"><img src="img/01-ofahmi-towing-truck-door-logo-usdot.webp" alt="OFAHMI Towing truck door with logo and USDOT number"><div><b>5.0 on Google</b><span>Verified reviews from real customers</span></div></div>
+  </div>
+</div></section>
+
+<!-- 2. REVIEWS. Live site: keep the existing Trustindex Google reviews widget (same one as now). Cards below = real reviews from that widget. -->
+<section class="reviews" aria-label="Google reviews"><div class="boxed">
+  <div class="rev-grid">
+    <div class="rev"><span class="stars">★★★★★</span><p>"Very affordable. Great service. I have no complaints. I highly recommend."</p><small>Giselle Henry · Posted on Google</small></div>
+    <div class="rev"><span class="stars">★★★★★</span><p>"They showed up quickly, were professional, friendly, and handled everything with care. The price was fair."</p><small>Emmanuel Castrejon · Posted on Google</small></div>
+    <div class="rev"><span class="stars">★★★★★</span><p>"Good for towing when you need n always pick up quick."</p><small>Atl. Tezzy · Posted on Google</small></div>
+  </div>
+  <div class="rev-note"><span class="stars">★★★★★</span>Verified Google reviews</div>
+</div></section>
+
+<!-- 3. STEPS (new). Container + H2 + 3 Icon Boxes. -->
+<section class="steps" id="steps"><div class="boxed center">
+  <span class="eyebrow">How it works</span>
+  <h2 style="margin-top:16px">A Tow Truck On The Way In 3 Steps</h2>
+  <p class="lead">Being stranded is stressful. One call and our dispatch center takes it from there.</p>
+  <div class="step-grid" style="text-align:left">
+    <div class="step"><h3>Call our 24/7 dispatch</h3><p>Tell us where you are and what happened. A real dispatcher answers, day or night.</p></div>
+    <div class="step"><h3>We send the nearest truck</h3><p>We send the nearest emergency tow truck to your location and tell you when to expect us.</p></div>
+    <div class="step"><h3>Back on the road</h3><p>We fix it on the spot or tow your vehicle safely to your shop, dealer or home.</p></div>
+  </div>
+</div></section>
+
+<!-- 4. SERVICES (live heading + intro kept). 3x2 grid of cards: Icon + H3 + text + Icon List (3 bullets) + link.
+     "Vehicle Recovery" card from the live page is replaced by Fuel Delivery (recovery/winching is not offered). -->
+<section><div class="boxed center">
+  <h2>Emergency Towing Service</h2>
+  <p class="lead">Contact us for emergency towing, roadside assistance, or a fast tow truck near you. Available 24/7 across Stone Mountain and the greater Atlanta area.</p>
+  <div class="sit-grid" style="text-align:left">
+    <div class="sit"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 17h14M6 17l1.5-5h9L18 17M8 12l1.2-3.5h5.6L16 12"/><circle cx="8" cy="17.5" r="1.5"/><circle cx="16" cy="17.5" r="1.5"/><path d="M12 3v3"/></svg></div><h3>Emergency Towing</h3><p>Broke down on the highway? We get a tow truck to you fast and take your vehicle where it needs to go.</p><ul><li>Fast response time</li><li>All vehicle types</li><li>Available 24/7</li></ul><a href="tel:+14709856967">Call now →</a></div>
+    <div class="sit"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M7 7V5h3v2M14 7V5h3v2M8 13h3M14.5 11.5v3M13 13h3"/></svg></div><h3>Jump Starts</h3><p>Dead battery? We'll get you back on the road quickly with professional jump start services.</p><ul><li>Fast response time</li><li>All vehicle types</li><li>Battery diagnostics</li></ul><a href="/services/">Learn more →</a></div>
+    <div class="sit"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 4v5M12 15v5M4 12h5M15 12h5"/></svg></div><h3>Tire Changes</h3><p>Flat tire on the roadside? Our team provides safe and efficient tire change services.</p><ul><li>Roadside tire changes</li><li>Spare installation</li><li>Safety inspection</li></ul><a href="/services/">Learn more →</a></div>
+    <div class="sit"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 20V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v15M4 20h12M8 7h4"/><path d="M15 9h2a2 2 0 0 1 2 2v6a1.5 1.5 0 0 0 3 0V8l-3-3"/></svg></div><h3>Fuel Delivery</h3><p>Ran out of gas? We'll bring fuel to your location so you can get back on the road quickly.</p><ul><li>Fast response time</li><li>Gas delivered to you</li><li>Available 24/7</li></ul><a href="/services/">Learn more →</a></div>
+    <div class="sit"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 16h14l3-5h3v5h-2"/><path d="M2 12h11"/><circle cx="6" cy="17.5" r="1.5"/><circle cx="17" cy="17.5" r="1.5"/></svg></div><h3>Flatbed Towing</h3><p>Every tow is done on a flatbed, so your vehicle rides fully on the bed and arrives without damage.</p><ul><li>AWD and 4x4 safe</li><li>Luxury and classic cars</li><li>Motorcycles</li></ul><a href="/services/">Learn more →</a></div>
+    <div class="sit"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h13M12 6l6 6-6 6"/><path d="M21 4v16"/></svg></div><h3>Long-Distance Towing</h3><p>Need to move your vehicle to another city or state? We handle long-distance towing safely.</p><ul><li>City to city and out of state</li><li>Secure flatbed transport</li><li>Competitive rates</li></ul><a href="/services/">Learn more →</a></div>
+  </div>
+</div></section>
+
+<!-- 5. COLLAGE + STATS (live: "100% Local Stone Mountain Company" and "24/7 Ready to help" stat cards kept, now on real photos).
+     Container 2 columns. Left: Images + 2 small stat Containers. Right: H2 + text + Icon List + Button. -->
+<section class="split"><div class="boxed">
+  <div class="collage-wrap">
+    <div class="collage">
+      <img src="img/03-flatbed-towing-white-sedan-side.webp" alt="White sedan secured on an OFAHMI Towing flatbed, side view">
+      <img src="img/10-flatbed-towing-white-sedan-strapped.webp" alt="White sedan secured with yellow straps on a flatbed">
+      <img src="img/05-flatbed-towing-suv-front.webp" alt="Dark blue SUV strapped down on a flatbed, front view">
+    </div>
+    <div class="statcard s1"><b>100%</b><span>Local Stone Mountain Company</span></div>
+    <div class="statcard s2"><b>24/7</b><span>Ready to help</span></div>
+  </div>
+  <div>
+    <span class="eyebrow">Your vehicle is in safe hands</span>
+    <h2 style="margin-top:16px">Safe, Damage-Free Emergency Towing</h2>
+    <p class="lead">Our team uses flatbed tow trucks and proper wheel straps to make sure your vehicle is transported safely without any damage.</p>
+    <ul class="checks">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5L20 7"/></svg>Compact cars, SUVs and pickups</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5L20 7"/></svg>Motorcycles and light-duty trucks</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5L20 7"/></svg>AWD, 4x4, luxury and low cars</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5L20 7"/></svg>Wheel straps on every tow</li>
+    </ul>
+    <div class="ctas" style="display:flex;margin-top:26px"><a class="btn btn-gold" href="tel:+14709856967">Call (470) 985-6967</a></div>
+  </div>
+</div></section>
+
+<!-- 6. WHY US (live heading + 3 icon boxes kept). Container 2 columns: left 3 Icon Boxes, right Image + stat card.
+     The live "10+ Years of Service" stat is replaced by "19 Cities We Serve" (the business was registered in 2026). -->
+<section class="why"><div class="boxed why-wrap">
+  <div>
+    <h2>Why Atlanta Trusts Ofahmi</h2>
+    <div class="why-list">
+      <div class="why-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></div><div><h3>Ultra-Fast Response</h3><p>We understand that being stranded is stressful. Our dispatchers send the nearest emergency tow truck and roadside assistance to your location quickly.</p></div></div>
+      <div class="why-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/><path d="m9 12 2 2 4-4"/></svg></div><div><h3>Licensed &amp; Insured</h3><p>Your vehicle is in safe hands. Our emergency towing and roadside assistance operators are trained and fully insured for your peace of mind.</p></div></div>
+      <div class="why-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div><h3>Local Expertise</h3><p>Based in Stone Mountain, we know every shortcut and backroad around Atlanta to bypass traffic and provide faster local towing than the big national chains.</p></div></div>
+    </div>
+  </div>
+  <div class="why-photo">
+    <img src="img/06-ofahmi-towing-flatbed-tow-truck-side.webp" alt="OFAHMI Towing flatbed rollback truck, side view">
+    <div class="statcard s3"><b>19</b><span>Cities We Serve</span></div>
+  </div>
+</div>
+<div class="boxed"><div class="pay" aria-label="Payment methods"><span>Cash</span><span>Credit and debit cards</span><span>Apple Pay</span><span>Cash App</span><span>Zelle</span></div></div>
+</section>
+
+<!-- 7. GALLERY (new). Container + H2 + Gallery widget, real job photos. -->
+<section><div class="boxed center">
+  <h2>Real Trucks. Real Jobs.</h2>
+  <p class="lead">Our own flatbeds on recent tows.</p>
+  <div class="gal">
+    <figure><img src="img/02-ofahmi-towing-flatbed-tow-truck-front.webp" alt="White OFAHMI Towing flatbed tow truck, front view"><figcaption>Our flatbed</figcaption></figure>
+    <figure><img src="img/07-flatbed-towing-white-sedan-front.webp" alt="White sedan on a flatbed with wheel straps, front view"><figcaption>Sedan tow</figcaption></figure>
+    <figure><img src="img/08-flatbed-towing-suv-rear.webp" alt="Dark blue SUV on a flatbed tow truck, rear view"><figcaption>SUV tow</figcaption></figure>
+    <figure><img src="img/11-flatbed-towing-suv-loaded.webp" alt="Dark blue SUV on a flatbed with the deck tilted"><figcaption>Loading the bed</figcaption></figure>
+  </div>
+</div></section>
+
+<!-- 8. AREAS (live heading kept). Container with background image + overlay. H2 + Text + 19 city Buttons. -->
+<section class="areas"><div class="boxed center">
+  <h2>Serving Atlanta &amp; Surrounding Areas</h2>
+  <p class="lead">From Stone Mountain to Downtown Atlanta, Decatur, Sandy Springs, Lawrenceville and beyond, our local tow trucks and roadside assistance are always nearby and ready to help.</p>
+  <div class="chips">
+    <a class="base">Stone Mountain</a><a>Atlanta</a><a>Dacula</a><a>Loganville</a><a>Lawrenceville</a><a>Norcross</a><a>Lilburn</a><a>Decatur</a><a>Duluth</a><a>Dunwoody</a><a>Sandy Springs</a><a>Doraville</a><a>Lithonia</a><a>Conyers</a><a>Snellville</a><a>Clarkston</a><a>Tucker</a><a>Walton County</a><a>Buford</a>
+  </div>
+</div></section>
+
+<!-- 9. FAQ (live questions kept). Nested Accordion, 5 items. Add FAQ schema. -->
+<section><div class="boxed center">
+  <h2>Frequently Asked Questions</h2>
+  <p class="lead">Got questions? We have answers. Here are some of the most common questions we receive about our local towing service.</p>
+  <div class="faq-list" style="text-align:left">
+    <details open><summary>How quickly can you get to my location?</summary><p>Ordinarily, we aim to reach our customers within 15 to 45 minutes, depending on traffic and your specific location.</p></details>
+    <details><summary>Are your towing services available 24/7?</summary><p>Yes! We provide 24/7 emergency towing and roadside assistance, 365 days a year.</p></details>
+    <details><summary>Will my vehicle be safe during the tow?</summary><p>Absolutely. Our team uses flatbed tow trucks and high-quality equipment to make sure your vehicle is transported safely without any damage.</p></details>
+    <details><summary>What types of vehicles do you tow?</summary><p>We tow everything from compact cars and SUVs to motorcycles and light-duty trucks.</p></details>
+    <details><summary>Do you offer roadside assistance other than towing?</summary><p>Yes, we provide jump starts, tire changes and fuel delivery.</p></details>
+  </div>
+</div></section>
+
+<!-- 10. FINAL CTA (live copy kept). Container with background image + overlay. H2 + Text + 2 Buttons. -->
+<section class="final"><div class="boxed">
+  <h2>Need A Tow Right Now?</h2>
+  <p class="lead" style="color:#e9e4d8">Don't wait on the side of the road. Call our 24/7 dispatch center and we'll have a truck on the way in minutes.</p>
+  <div class="ctas"><a class="btn btn-gold" href="tel:+14709856967">Call (470) 985-6967</a><a class="btn btn-ghost" href="/contact/">Contact Us</a></div>
+</div></section>
+</main>
+
+<!-- GLOBAL FOOTER: existing Theme Builder footer, no change -->
+<footer class="site-footer">Global footer (unchanged) · © 2026 OFAHMI TOWING LLC · Stone Mountain, GA</footer>
+
+<!-- 11. STICKY CALL (replaces the full-width fixed "CALL (470) 985-6967" button aad23b0).
+     Mobile (Elementor: Container, Position Fixed, bottom 0, width 100%, visible on Mobile only): 2 buttons.
+     Desktop (Container, Position Fixed, bottom 24 right 24, visible on Desktop + Tablet): round-icon pill; shown after the hero via the small script below
+     (Elementor Pro: Motion Effects > Sticky is not needed; use an HTML widget with this script, or show it always). -->
+<nav class="call-bar" aria-label="Quick contact">
+  <a class="btn btn-gold btn-call" href="tel:+14709856967"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span>Call Now<small>(470) 985-6967 · 24/7</small></span></a>
+  <a class="btn btn-ghost" href="/contact/">Get a Quote<small>Online form</small></a>
+</nav>
+<a class="call-pill" id="callPill" href="tel:+14709856967"><span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span><span><small>24/7 dispatch · tap to call</small><b>(470) 985-6967</b></span></a>
+<script>
+(function(){var p=document.getElementById('callPill'),h=document.getElementById('top');
+ function t(){var past=h?h.getBoundingClientRect().bottom<80:window.scrollY>500;p.classList.toggle('show',past);}
+ window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+
+</body>
+</html>
